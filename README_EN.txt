@@ -26,7 +26,6 @@ Now, you can start to edit files.
 -------------------------------------------------------------
                          How to use it
 -------------------------------------------------------------
--Extract "Program.zip".
 -Run "Program/Editor.exe"
 -Once loaded, you need to open a file (see below for a list
 of important files) by clicking on the "Open" button.

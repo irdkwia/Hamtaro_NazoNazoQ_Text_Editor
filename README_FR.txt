@@ -24,6 +24,7 @@ Maintenant, vous pouvez modifier ces fichiers.
 -------------------------------------------------------------
                      Comment ça marche ?
 -------------------------------------------------------------
+-Extractez "Program.zip" dans le même dossier que celui-ci.
 -Lancez "Program/Editor.exe"
 -Une fois lancé, ouvrez un fichier (voir ci-dessous pour
 une liste de fichiers importants) en cliquant sur le bouton

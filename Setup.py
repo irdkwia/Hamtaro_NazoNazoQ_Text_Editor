@@ -1,5 +1,7 @@
 import cx_Freeze
 
+#Code used to freeze python code into an executable.
+
 executables = [cx_Freeze.Executable("Editor.py"), base="Win32GUI"]
 
 cx_Freeze.setup(

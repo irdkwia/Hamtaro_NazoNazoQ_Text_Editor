@@ -6,12 +6,14 @@ import platform
 from ModClass import *
 from math import floor, ceil
 
+#Build a list of index 
 def GetIndexes(w, item, ListInd = []):
     ListInd.insert(0, w.index(item))
     if w.parent(item)!='':
         ListInd = GetIndexes(w, w.parent(item), ListInd)
     return ListInd
 
+#Build a list of all offsets present in the file
 def GetOffsets(content, ListInd, ListOff = []):
     ListOff.append(content[ListInd[0]*4]+content[ListInd[0]*4+1]*256+content[ListInd[0]*4+2]*(256**2)+content[ListInd[0]*4+3]*(256**3))
     del ListInd[0]
@@ -19,6 +21,7 @@ def GetOffsets(content, ListInd, ListOff = []):
         ListOff = GetOffsets(content[ListOff[-1]:], ListInd, ListOff)
     return ListOff
 
+#Correct all offsets to match to 
 def ChangeAllOffsets(content, Diff, ListOff):
     OffFirst = content[0]+content[1]*256+content[2]*(256**2)+content[3]*(256**3)
     Max = OffFirst//4+1
@@ -38,6 +41,7 @@ def ChangeAllOffsets(content, Diff, ListOff):
         content = content[:indexOff]+ChangeAllOffsets(content[indexOff:], Diff, ListOff[1:])
     return content
 
+#Save file
 def Save():
     global content
     FileName = filedialog.asksaveasfilename(title="Save file",filetypes=[('Data files','.dat'), ('All files','.*')])
@@ -45,6 +49,8 @@ def Save():
         with open(FileName, 'wb') as fichier:
             fichier.write(content)
             fichier.close()
+
+#Open file
 def Open():
     global content
     FileName = filedialog.askopenfilename(title="Open file",filetypes=[('Data files','.dat'), ('All files','.*')])
@@ -60,6 +66,8 @@ def Open():
                 content = contentBackup
         if len(content)>=4:
             GenTree(TreeVal, content)
+
+#Change value in EntryVal for the one selected in TreeVal.
 def onSelect(evt):
     global content
     w = evt.widget
@@ -71,14 +79,16 @@ def onSelect(evt):
         EntryVal.focus()
         EntryVal.icursor(END)
     except:pass
-    
+
+#Change value of Debug each time you click in the debug button.
 def checkDbg():
     global Debug
     if Debug:
         Debug = False
     else:
         Debug = True
-    
+
+#Change text in the file
 def Change():
     global content, Debug
     ListOff = GetOffsets(content, GetIndexes(TreeVal, TreeVal.selection()), [])
@@ -87,8 +97,6 @@ def Change():
     LastCont = content[SumOff:].split(b'\xff\x0a')[0]
     PreCont = GetCode("\n".join(EntryVal.get().split("|NL|")))
     Diff = len(PreCont)-len(LastCont)
-    #print(ListOff, SumOff, Diff)
-    #print(LastCont, PreCont, sep = '|')
     content = ChangeAllOffsets(content, Diff, ListOff)
     content = content[:SumOff]+PreCont+content[SumOff+len(LastCont):]
     if Debug:
@@ -96,6 +104,8 @@ def Change():
         GenTree(TreeVal, content)
     else:
         TreeVal.item(TreeVal.selection(), text=EntryVal.get())
+
+#Check if a part of the file contains sub-offsets for other parts or data
 def IsDecomposable(content):
     try:
         OffFirst = content[0]+content[1]*256+content[2]*(256**2)+content[3]*(256**3)
@@ -107,6 +117,8 @@ def IsDecomposable(content):
         else:
             return False
     except:return None
+
+#Build the Treeview from content in the file
 def GenTree(Widget, content, parent="", column = 0):
     if parent=="":
         Add = 2
@@ -126,7 +138,6 @@ def GenTree(Widget, content, parent="", column = 0):
                 Text = "|NL|".join(GetSel(content[Offset+2:].split(b'\xff\x0a')[0]).split("\n"))
                 Index = Widget.insert(parent, END, text = Text)
 
-#Nazo Nazo Q//data//QMsg//QMsgDat.dat
 content = ""
 
 fen = Tk()
@@ -146,9 +157,6 @@ EntryVal = Entry(font="arial 10")
 EntryVal.pack(side=BOTTOM, fill=BOTH, expand = 1)
 
 Label(text = "Modify object", font="arial 10").pack(side=BOTTOM, fill=X)
-
-"""ScrollX = Scrollbar(orient=HORIZONTAL)
-ScrollX.pack(side=BOTTOM, fill=X)"""
 
 ScrollY = Scrollbar(orient=VERTICAL)
 ScrollY.pack(side=RIGHT, fill=Y)
@@ -174,8 +182,6 @@ ChkDebug = Checkbutton(FrameChk, text="Debug Mode", command=checkDbg, font="aria
 ChkDebug.pack(side=LEFT, fill=BOTH, expand = 1)
 Debug = False
 
-"""ScrollX.config(command=TreeVal.xview)
-TreeVal.config(xscrollcommand=ScrollX.set)"""
 ScrollY.config(command=TreeVal.yview)
 TreeVal.config(yscrollcommand=ScrollY.set)
 

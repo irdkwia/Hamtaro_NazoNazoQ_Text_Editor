@@ -1,3 +1,4 @@
+#Transcode code in a text more understandable
 def GetSel(ListCode):
 	Str = " ノハバパヒビピフブプへべぺホボポマミムメモャヤュユョヨラリルレ !ヲンヴ%&\"()・+,-./0123456789:;。='?-ABCDEFGHIJKLMNOPQRSTUVWXYZ[¥]「」~abcdefghijklmnopqrstuvwxyzトドナニヌネぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらリるれろ…わロワをんァアィイゥウェエォオ力ガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテヂ"
 	Sel = ""
@@ -47,6 +48,7 @@ def GetSel(ListCode):
 			Sel+="|n"+str(Nb)+"|"
 	return Sel
 
+#Transcode text in code used by the game.
 def GetCode(StrConv):
 	Str = "²ノハバパヒビピフブプへべぺホボポマミムメモャヤュユョヨラリルレ !ヲンヴ%&\"()・+,-./0123456789:;。='?-ABCDEFGHIJKLMNOPQRSTUVWXYZ[¥]「」~abcdefghijklmnopqrstuvwxyzトドナニヌネぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらリるれろ…わロワをんァアィイゥウェエォオ力ガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテヂ"
 	SpecInstr = ""

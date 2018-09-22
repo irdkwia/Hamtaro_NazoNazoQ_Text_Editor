@@ -65,7 +65,9 @@ def Open():
         except:
                 content = contentBackup
         if len(content)>=4:
-            GenTree(TreeVal, content)
+            Ret = GenTree(TreeVal, content)
+            if Ret=="Error":
+                content = b"\x04\x00\x00\x00\x20\x20\xff\x0a"
 
 #Change value in EntryVal for the one selected in TreeVal.
 def onSelect(evt):
@@ -102,6 +104,8 @@ def Change():
     if Debug:
         TreeVal.delete(*TreeVal.get_children())
         GenTree(TreeVal, content)
+        if Ret=="Error":
+            content = b"\x04\x00\x00\x00\x20\x20\xff\x0a"
     else:
         TreeVal.item(TreeVal.selection(), text=EntryVal.get())
 
@@ -120,23 +124,30 @@ def IsDecomposable(content):
 
 #Build the Treeview from content in the file
 def GenTree(Widget, content, parent="", column = 0):
-    if parent=="":
-        Add = 2
-    OffFirst = content[0]+content[1]*256+content[2]*(256**2)+content[3]*(256**3)
-    Max = OffFirst//4+1
-    if OffFirst%4==0:
-        Max -= 1
-    if Max<len(content):
-        for i in range(Max):
-            Offset = content[i*4]+content[i*4+1]*256+content[i*4+2]*(256**2)+content[i*4+3]*(256**3)
-            ID = IsDecomposable(content[Offset:])
-            if ID==None:pass
-            elif ID:
-                Index = Widget.insert(parent, END, text = str(i))
-                GenTree(Widget, content[Offset:], Index)
-            else:
-                Text = "|NL|".join(GetSel(content[Offset+2:].split(b'\xff\x0a')[0]).split("\n"))
-                Index = Widget.insert(parent, END, text = Text)
+    try:
+        OffFirst = content[0]+content[1]*256+content[2]*(256**2)+content[3]*(256**3)
+        Max = OffFirst//4+1
+        if OffFirst%4==0:
+            Max -= 1
+        if Max<len(content):
+            for i in range(Max):
+                Offset = content[i*4]+content[i*4+1]*256+content[i*4+2]*(256**2)+content[i*4+3]*(256**3)
+                ID = IsDecomposable(content[Offset:])
+                if ID==None:pass
+                elif ID:
+                    Index = Widget.insert(parent, END, text = str(i))
+                    Ret = GenTree(Widget, content[Offset:], Index)
+                    if Ret=="Error":
+                        return "Error"
+                else:
+                    Text = "|NL|".join(GetSel(content[Offset+2:].split(b'\xff\x0a')[0]).split("\n"))
+                    Index = Widget.insert(parent, END, text = Text)
+        return "OK"
+    except:
+        Widget.delete(*Widget.get_children())
+        Widget.insert("", END, text="Error ! File could not be loaded.")
+        return "Error"
+        
 
 content = ""
 

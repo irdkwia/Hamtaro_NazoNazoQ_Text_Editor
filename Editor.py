@@ -21,7 +21,7 @@ def GetOffsets(content, ListInd, ListOff = []):
         ListOff = GetOffsets(content[ListOff[-1]:], ListInd, ListOff)
     return ListOff
 
-#Correct all offsets to match to 
+#Correct all offsets to match to the modifications in text
 def ChangeAllOffsets(content, Diff, ListOff):
     OffFirst = content[0]+content[1]*256+content[2]*(256**2)+content[3]*(256**3)
     Max = OffFirst//4+1

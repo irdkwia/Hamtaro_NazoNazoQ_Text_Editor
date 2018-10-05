@@ -4,6 +4,8 @@ from tkinter import *
 from tkinter.ttk import Treeview, Style
 from Scripts.TKClass import *
 
+#Search もどる
+
 builtins.content = ""
 
 builtins.fen = Tk()
@@ -40,6 +42,8 @@ TreeVal.bind('<<TreeviewSelect>>', onSelect)
 
 builtins.ButtonAdd = Button(FrameBtn, text="Edit", command=Change, font="arial 10")
 ButtonAdd.pack(side=LEFT, fill=BOTH, expand = 1)
+builtins.ButtonSearch = Button(FrameBtn, text="Search", command=Search, font="arial 10")
+ButtonSearch.pack(side=LEFT, fill=BOTH, expand = 1)
 builtins.ButtonOpen = Button(FrameBtn, text="Open", command=Open, font="arial 10")
 ButtonOpen.pack(side=LEFT, fill=BOTH, expand = 1)
 builtins.ButtonSave = Button(FrameBtn, text="Save", command=Save, font="arial 10")

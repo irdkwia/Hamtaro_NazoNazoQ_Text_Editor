@@ -45,6 +45,8 @@ C'est plus lent, mais cela permet de vérifier si les
 changements ont été effectués correctement.
 Pour plus d'informations, ouvrez le fichier
 "Doc/Examples.pdf".
+Il y a aussi une video dans Doc montrant plusieurs tests
+qui marchent.
 -------------------------------------------------------------
                      Caractères spéciaux
 -------------------------------------------------------------
@@ -55,31 +57,44 @@ fait qu'ils sont entre deux caractères "|".
 Voici la liste de ces caractères : 
 
 |NL| : Retour à la ligne.
+
 |Blue|, |Red| or |Black| : Sont utilisés pour changer la
 couleur du texte qui suit.
-|Start| : Indique un début de boîte de dialogue. Attention, 
+
+|Start:XX| : Indique un début de boîte de dialogue. Attention, 
 il peut être omis.
-|End| : Indique une fin de boîte de dialogue. Attention, 
+XX représente un nombre entre 0 et 255.
+
+|End:XX| : Indique une fin de boîte de dialogue. Attention, 
 il peut être omis.
-|Pause| : Marque une pause de quelques secondes avant
+XX représente un nombre entre 0 et 255.
+
+|Pause:XX| : Marque une pause de quelques secondes avant
 d'enchaîner sur la boîte de dialogue suivante.
-|Next| : Indique la présence d'une autre boîte de dialogue
+XX représente un nombre entre 0 et 255.
+
+|Next:XX| : Indique la présence d'une autre boîte de dialogue
 à la suite de la ligne.
+XX représente un nombre entre 0 et 255.
 
 NB : Si vous souhaitez ajouter une autre boîte de dialogue
 (notamment pour pouvoir afficher plus de texte you pouvez
-insérer "|End||n00||Next||n00|" entre "|Start|" et "|End|",
-ce qui finit la précédente boîte de dialogue, indique
-la présence d'une nouvelle boîte de dialogue et la
-commence.
+insérer "|End:0||Next:0|" (suivi de "|Start:0|" si nécessaire)
+entre "|Start:1|" et "|End:1|", ce qui finit la précédente
+boîte de dialogue, indique la présence d'une nouvelle boîte
+de dialogue et la commence.
 
 |nXX| : D'autres caractères spéciaux, ne les supprimez
 jamais.
+XX représente un nombre entre 0 et 255.
+
 |xXX| : D'autres caractères spéciaux, évitez de les
 supprimer. Certains peuvent changer la couleur et la
 taille du texte.
-|cXX| : Des symboles spéciaux, comme un symbole en forme de
-coeur.
+XX représente un nombre entre 0 et 255.
+
+|cXX| : Des symboles spéciaux.
+XX représente un nombre entre 0 et 255.
 
 NB : N'utilisez JAMAIS |n254| et |n255|.
 

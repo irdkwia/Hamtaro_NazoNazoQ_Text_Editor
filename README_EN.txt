@@ -42,6 +42,8 @@ the program to rebuild the treeview after each edit.
 This is very slow, but you can check if the changes are made
 correctly.
 For more information, please check file "Doc/Examples.pdf".
+Also, there is a small video in Doc of various tests that
+works.
 -------------------------------------------------------------
                       Special Characters
 -------------------------------------------------------------
@@ -51,25 +53,40 @@ they are between pipe characters ("|").
 Here is a list of special characters : 
 
 |NL| : New Line.
+
 |Blue|, |Red| or |Black| : They are used to change the
 color of the following text.
-|Start| : Notify about a start of a textbox, but it is not
-always present.
-|End| : Notify about an end of a textbox, but it is not
-always present.
-|Pause| : Used to mark a pause in a dialogue, before
+
+|Start:XX| : Notify about a start of a textbox, but it is not
+always present. XX Represents a number between 0 and 255.
+
+|End:XX| : Notify about an end of a textbox, but it is not
+always present. XX Represents a number between 0 and 255.
+
+|Pause:XX| : Used to mark a pause in a dialogue, before
 it continues automatically.
-|Next| : Notify about a new textbox.
+XX Represents a number between 0 and 255. It defines the
+amount of time (in frames) the dialogue will pause before
+it continues.
+
+|Next:XX| : Notify about a new textbox.
+XX Represents a number between 0 and 255.
 
 NB : If you want to add a textbox (to add more text), you
-can insert "|End||n00||Next||n00|" between "|Start|" and
-"|End|" (if exists in a line of text which ends the
-previous textbox, notify about a new textbox and starts it.
+can insert "|End:0||Next:0|" (followed by "|Start:0|" if
+necessary) between "|Start:1|" and "|End:1|" (if exists in
+a line of text which ends the previous textbox, notify about
+a new textbox and starts it.
 
 |nXX| : Other special characters, and should not be removed.
+XX Represents a number between 0 and 255.
+
 |xXX| : Other special characters, and should not be removed.
 Some can change the color, or the size of the text.
-|cXX| : Special symbols, such as heart symbol.
+XX Represents a number between 0 and 255.
+
+|cXX| : Special symbols.
+XX Represents a number between 0 and 255.
 
 Note : NEVER use |n254| and |n255|.
 

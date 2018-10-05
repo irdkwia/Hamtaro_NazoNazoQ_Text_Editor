@@ -1,0 +1,12 @@
+-------------------------------------------------------------
+                     Edits in video test
+-------------------------------------------------------------
+Here is some small edits for the video that I don't want to
+modify in the video. These are due to some changes between 
+versions of the program.
+
+-In "STEP 2", replace "|End||n00||Next||n00|" I copied by
+"|End:0||Next:0|"
+-In "STEP 3", replace "|Pause|Z" I copied by "|Pause:90|".
+Note that you can replace value 90 by any value between 0
+and 255 to change pause duration.

@@ -118,6 +118,10 @@ Riddles and Cutscenes).
 -X/data/UserList/UserList.dat
 -X/data/UserList/AreaName.dat
 
+You could test other files, but if the program freezes
+or an error message is displayed, that mean that the
+program does not recognize file structure.
+
 Some info about the files : 
 
 -data/QMsg/QMsgDat.dat

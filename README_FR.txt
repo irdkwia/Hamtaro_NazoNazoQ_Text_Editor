@@ -126,6 +126,10 @@ dialogues des cinématiques).
 -X/data/UserList/UserList.dat
 -X/data/UserList/AreaName.dat
 
+Vous pouvez tester d'autres fichiers, mais si le programme
+plante ou si un message d'erreur est affiché, cela veut dire
+que le programme ne reconnaît pas la structure du fichier.
+
 Plus d'info sur certains fichiers : 
 
 -data/QMsg/QMsgDat.dat

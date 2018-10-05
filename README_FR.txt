@@ -79,7 +79,7 @@ XX représente un nombre entre 0 et 255.
 
 NB : Si vous souhaitez ajouter une autre boîte de dialogue
 (notamment pour pouvoir afficher plus de texte you pouvez
-insérer "|End:0||Next:0|" (suivi de "|Start:0|" si nécessaire)
+insérer "|End:0||Next:0|" (suivi de "|Start:1|" si nécessaire)
 entre "|Start:1|" et "|End:1|", ce qui finit la précédente
 boîte de dialogue, indique la présence d'une nouvelle boîte
 de dialogue et la commence.

@@ -73,7 +73,7 @@ it continues.
 XX Represents a number between 0 and 255.
 
 NB : If you want to add a textbox (to add more text), you
-can insert "|End:0||Next:0|" (followed by "|Start:0|" if
+can insert "|End:0||Next:0|" (followed by "|Start:1|" if
 necessary) between "|Start:1|" and "|End:1|" (if exists in
 a line of text which ends the previous textbox, notify about
 a new textbox and starts it.

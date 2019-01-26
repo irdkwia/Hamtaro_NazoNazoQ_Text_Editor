@@ -3,17 +3,6 @@ from tkinter import *
 from tkinter.ttk import Treeview, Style
 from Scripts.ModClass import *
 
-#Search text through the file
-def Search(ListSearch = [], ListInd = [], parent = None):
-    StrSearch = EntryVal.get()
-    for Index, Item in enumerate(TreeVal.get_children(parent)):
-        if StrSearch in TreeVal.item(Item, "text"):
-            ListSearch.append(ListInd+[Index])
-        ListSearch = Search(ListSearch, ListInd+[Index], Item)
-    if parent==None:
-        print(ListSearch)
-    return ListSearch
-
 #Build a list of index 
 def GetIndexes(w, item, ListInd = []):
     ListInd.insert(0, w.index(item))

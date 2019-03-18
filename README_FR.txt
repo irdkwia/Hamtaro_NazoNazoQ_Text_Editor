@@ -115,7 +115,6 @@ dialogues des cinématiques).
 -X/data/FEvent/FEvData_YM.dat
 -X/data/Furniture/FurnitureName.dat
 -X/data/Furniture/FurnitureSetName.dat
--X/data/Furniture/FurnitureName.dat
 -X/data/House/HouseHamFurnMsg.dat
 -X/data/House/HouseHamTouchMsg.dat
 -X/data/House/HouseSysMsg.dat

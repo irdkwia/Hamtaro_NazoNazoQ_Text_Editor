@@ -4,16 +4,38 @@ from tkinter.ttk import Treeview, Style
 from Scripts.ModClass import *
 
 #Search text through the file
-def Search(ListSearch = [], ListInd = [], parent = None):
-    StrSearch = EntryVal.get()
+def Search(ListSearch = list(), ListInd = list(), parent = None):
+    StrSearch = EntrySearch.get()
     for Index, Item in enumerate(TreeVal.get_children(parent)):
-        if StrSearch in TreeVal.item(Item, "text"):
-            ListSearch.append(ListInd+[Index])
+        if TreeVal.item(Item, "text").count(StrSearch)>0:
+            ListSearch.append(Item)
         ListSearch = Search(ListSearch, ListInd+[Index], Item)
-    if parent==None:
-        print(ListSearch)
     return ListSearch
 
+#Search button
+def SearchCmd(Direction):
+    ListSearch = Search([], [], None)
+    Focused = False
+    for index, Item in enumerate(ListSearch):
+        if TreeVal.focus()==Item:
+            TreeVal.selection_set(ListSearch[(index+Direction)%len(ListSearch)])
+            TreeVal.focus(ListSearch[(index+Direction)%len(ListSearch)])
+            TreeVal.see(ListSearch[(index+Direction)%len(ListSearch)])
+            Focused = True
+            break
+    if not Focused and len(ListSearch)>0:
+        TreeVal.selection_set(ListSearch[0])
+        TreeVal.focus(ListSearch[0])
+        TreeVal.see(ListSearch[0])
+
+#Search previous button
+def SearchCmdPrev():
+    SearchCmd(-1)
+    
+#Search next button
+def SearchCmdNext():
+    SearchCmd(1)
+    
 #Build a list of index 
 def GetIndexes(w, item, ListInd = []):
     ListInd.insert(0, w.index(item))

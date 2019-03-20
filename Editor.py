@@ -6,14 +6,12 @@ from Scripts.TKClass import *
 
 sys.setrecursionlimit(30)
 
-#Search もどる
-
 builtins.content = ""
 
-builtins.fen = Tk()
-fen.geometry("450x600")
-fen.title("Nazo Nazo Q Editor")
-fen.resizable(width=True, height=True)
+builtins.win = Tk()
+win.geometry("450x600")
+win.title("Nazo Nazo Q Editor")
+win.resizable(width=True, height=True)
 
 Label(text = "Tree", font="arial 10").pack(side=TOP, fill=X)
 
@@ -34,7 +32,7 @@ FrameBtn.pack(side=BOTTOM, fill=X)
 builtins.EntryVal = Entry(font="arial 10")
 EntryVal.pack(side=BOTTOM, fill=BOTH, expand = 1)
 
-Label(text = "Modify object", font="arial 10").pack(side=BOTTOM, fill=X)
+Label(text = "Edit text", font="arial 10").pack(side=BOTTOM, fill=X)
 
 builtins.ScrollY = Scrollbar(orient=VERTICAL)
 ScrollY.pack(side=RIGHT, fill=Y)
@@ -68,4 +66,4 @@ ButtonSearch.pack(side=LEFT, fill=BOTH, expand = 1)
 ScrollY.config(command=TreeVal.yview)
 TreeVal.config(yscrollcommand=ScrollY.set)
 
-fen.mainloop()
+win.mainloop()

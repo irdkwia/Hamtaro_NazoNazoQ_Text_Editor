@@ -39,7 +39,11 @@ pas effectués.
 -N'oubliez pas de sauvegarder le fichier avant de fermer
 la fenêtre.
 
-NB : S'il elle est cochée, la case à cocher "Debug" force
+Nouveau : Vous pouvez maintenant rechercher un texte
+spécifique en bas en l'entrant et en cliquant sur le bouton
+"Previous" ou "Next".
+
+NB : Si elle est cochée, la case à cocher "Debug" force
 le programme à recharger l'arbre après chaque modification.
 C'est plus lent, mais cela permet de vérifier si les
 changements ont été effectués correctement.
@@ -79,7 +83,7 @@ XX représente un nombre entre 0 et 255.
 
 NB : Si vous souhaitez ajouter une autre boîte de dialogue
 (notamment pour pouvoir afficher plus de texte you pouvez
-insérer "|End:0||Next:0|" (suivi de "|Start:0|" si nécessaire)
+insérer "|End:0||Next:0|" (suivi de "|Start:1|" si nécessaire)
 entre "|Start:1|" et "|End:1|", ce qui finit la précédente
 boîte de dialogue, indique la présence d'une nouvelle boîte
 de dialogue et la commence.
@@ -124,6 +128,10 @@ dialogues des cinématiques).
 -X/data/QEvent/SorahamQEvMesData.dat
 -X/data/UserList/UserList.dat
 -X/data/UserList/AreaName.dat
+
+Vous pouvez tester d'autres fichiers, mais si le programme
+plante ou si un message d'erreur est affiché, cela veut dire
+que le programme ne reconnaît pas la structure du fichier.
 
 Plus d'info sur certains fichiers : 
 

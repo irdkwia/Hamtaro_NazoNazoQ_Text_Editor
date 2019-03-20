@@ -6,7 +6,7 @@ If you can understand well french, you can see the
 "README_FR.txt" file for documentation in french.
 
 This program can be used to edit text in 
-"Tottoko Hamtaro : Nazo Nazo Q" nintendo DS game.
+"Tottoko Hamtaro: Nazo Nazo Q" nintendo DS game.
 It can only edit text, and not pictures that contain text.
 
 To use it, you need to know how to pack/unpack nds files.
@@ -35,9 +35,12 @@ of important files) by clicking on the "Open" button.
 changes by typing them in the entry at the bottom. Don't 
 forget to click on the "Edit" button to save changes in the
 line before selecting another, otherwise changes are lost.
--Don't forget to save your modified file.
+-Don't forget to save your edited file.
 
-Note : If activated, the "Debug" Check button force
+NEW: You can now search a specific text at the bottom by
+entering it and clicking on "Previous" or "Next" button.
+
+Note: If activated, the "Debug" Check button force
 the program to rebuild the treeview after each edit.
 This is very slow, but you can check if the changes are made
 correctly.
@@ -50,45 +53,45 @@ works.
 Lines of text may contain some special character. All
 of these characters are pointed out by the fact that
 they are between pipe characters ("|").
-Here is a list of special characters : 
+Here is a list of special characters: 
 
-|NL| : New Line.
+|NL|: New Line.
 
-|Blue|, |Red| or |Black| : They are used to change the
+|Blue|, |Red| or |Black|: They are used to change the
 color of the following text.
 
-|Start:XX| : Notify about a start of a textbox, but it is not
+|Start:XX|: Notify about a start of a textbox, but it is not
 always present. XX Represents a number between 0 and 255.
 
-|End:XX| : Notify about an end of a textbox, but it is not
+|End:XX|: Notify about an end of a textbox, but it is not
 always present. XX Represents a number between 0 and 255.
 
-|Pause:XX| : Used to mark a pause in a dialogue, before
+|Pause:XX|: Used to mark a pause in a dialogue, before
 it continues automatically.
 XX Represents a number between 0 and 255. It defines the
 amount of time (in frames) the dialogue will pause before
 it continues.
 
-|Next:XX| : Notify about a new textbox.
+|Next:XX|: Notify about a new textbox.
 XX Represents a number between 0 and 255.
 
-NB : If you want to add a textbox (to add more text), you
-can insert "|End:0||Next:0|" (followed by "|Start:0|" if
+NB: If you want to add a textbox (to add more text), you
+can insert "|End:0||Next:0|" (followed by "|Start:1|" if
 necessary) between "|Start:1|" and "|End:1|" (if exists in
 a line of text which ends the previous textbox, notify about
 a new textbox and starts it.
 
-|nXX| : Other special characters, and should not be removed.
+|nXX|: Other special characters, and should not be removed.
 XX Represents a number between 0 and 255.
 
-|xXX| : Other special characters, and should not be removed.
+|xXX|: Other special characters, and should not be removed.
 Some can change the color, or the size of the text.
 XX Represents a number between 0 and 255.
 
-|cXX| : Special symbols.
+|cXX|: Special symbols.
 XX Represents a number between 0 and 255.
 
-Note : NEVER use |n254| and |n255|.
+Note: NEVER use |n254| and |n255|.
 
 -------------------------------------------------------------
                         List of files
@@ -117,14 +120,18 @@ Riddles and Cutscenes).
 -X/data/UserList/UserList.dat
 -X/data/UserList/AreaName.dat
 
-Some info about the files : 
+You could test other files, but if the program freezes
+or an error message is displayed, that mean that the
+program does not recognize file structure.
+
+Some info about the files: 
 
 -data/QMsg/QMsgDat.dat
 Lines of text at index 0 are lines used
 in the riddles' selection menu (Book).
 Lines of text at index 1 are rank names.
 Index 3 to the end contains riddles.
-Each riddle index has 6 lines : 
+Each riddle index has 6 lines: 
 -The question
 -The first answer (always the correct answer)
 -The second answer
@@ -134,7 +141,7 @@ Each riddle index has 6 lines :
 
 -data/FEvent/*
 All of these files have the same structure.
-They contain a repetition of the following pattern : 
+They contain a repetition of the following pattern: 
 -One or more lines of random symbols (probably data
 for animations).
 -One line with a sub index 0 which contains text.

@@ -127,13 +127,13 @@ def Change():
     SumOff = sum(ListOff)
     SumOff+=2
     LastCont = content[SumOff:].split(b'\xff\x0a')[0]
-    PreCont = GetCode("\n".join(EntryVal.get().split("|NL|")))
+    PreCont = GetCode(EntryVal.get())
     Diff = len(PreCont)-len(LastCont)
     content = ChangeAllOffsets(content, Diff, ListOff)
     content = content[:SumOff]+PreCont+content[SumOff+len(LastCont):]
     if Debug:
         TreeVal.delete(*TreeVal.get_children())
-        GenTree(TreeVal, content)
+        Ret = GenTree(TreeVal, content)
         if Ret=="Error":
             content = b"\x04\x00\x00\x00\x20\x20\xff\x0a"
     else:
@@ -170,10 +170,10 @@ def GenTree(Widget, content, parent="", column = 0):
                     if Ret=="Error":
                         return "Error"
                 else:
-                    Text = "|NL|".join(GetSel(content[Offset+2:].split(b'\xff\x0a')[0]).split("\n"))
+                    Text = GetSel(content[Offset+2:].split(b'\xff\x0a')[0])
                     Index = Widget.insert(parent, END, text = Text)
         return "OK"
     except:
         Widget.delete(*Widget.get_children())
-        Widget.insert("", END, text="Error ! File could not be loaded.")
+        Widget.insert("", END, text="Error! File could not be loaded.")
         return "Error"

@@ -1,7 +1,8 @@
+LISTCHAR = chr(0)+"ノハバパヒビピフブプへべぺホボポマミムメモャヤュユョヨラリルレ !ヲンヴ%&\"()・+,-./0123456789:;。='?-ABCDEFGHIJKLMNOPQRSTUVWXYZ[¥]「」~abcdefghijklmnopqrstuvwxyzトドナニヌネぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらリるれろ…わロワをんァアィイゥウェエォオ力ガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデ"
+LISTCHARSPEC = "↑→↓←ⒶⒷⓍⓎⓇⓁ♥♪★太郎○✕"
+
 #Transcode code in a text more understandable
 def GetSel(ListCode):
-	Str = " ノハバパヒビピフブプへべぺホボポマミムメモャヤュユョヨラリルレ !ヲンヴ%&\"()・+,-./0123456789:;。='?-ABCDEFGHIJKLMNOPQRSTUVWXYZ[¥]「」~abcdefghijklmnopqrstuvwxyzトドナニヌネぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらリるれろ…わロワをんァアィイゥウェエォオ力ガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデ"
-	StrSpec = "↑→↓←ⒶⒷⓍⓎⓇⓁ♥♪★太郎○✕"
 	Sel = ""
 	NextFF = False
 	NextFE = False
@@ -16,14 +17,14 @@ def GetSel(ListCode):
 				elif Nb==0:
 					Sel+="|n00|"
 				else:
-					Sel+=Str[Nb]
+					Sel+=LISTCHAR[Nb]
 			elif NextEndSpec:
                                 NextEndSpec = False
                                 Sel+=str(Nb)+"|"
 			elif NextFF:
 				NextFF = False
 				if Nb==0:
-					Sel+="\n"
+					Sel+="|NL|"
 				elif Nb==1:
 					Sel+="|Next:"
 					NextEndSpec = True
@@ -47,7 +48,7 @@ def GetSel(ListCode):
 			else:
 				NextFE = False
 				try:
-					Sel+=StrSpec[Nb]
+					Sel+=LISTCHARSPEC[Nb]
 				except:
 					Sel+="|c"+str(Nb)+"|"
 				
@@ -56,45 +57,43 @@ def GetSel(ListCode):
 	return Sel
 
 #Transcode text in code used by the game.
-def GetCode(StrConv):
-	Str = "²ノハバパヒビピフブプへべぺホボポマミムメモャヤュユョヨラリルレ !ヲンヴ%&\"()・+,-./0123456789:;。='?-ABCDEFGHIJKLMNOPQRSTUVWXYZ[¥]「」~abcdefghijklmnopqrstuvwxyzトドナニヌネぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらリるれろ…わロワをんァアィイゥウェエォオ力ガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデ"
-	StrSpec = "↑→↓←ⒶⒷⓍⓎⓇⓁ♥♪★太郎○✕"
+def GetCode(LISTCHARConv):
 	SpecInstr = ""
 	ListCode = b''
-	for Lettre in StrConv:
+	for Lettre in LISTCHARConv:
 		try:
-			if Lettre=="\n":
-				ListCode += b'\xff\x00'
-			elif Lettre=="|" and SpecInstr=="":
+			if Lettre=="|" and SpecInstr=="":
 				SpecInstr = "|"
 			elif Lettre=="|":
 				SpecInstr += "|"
 				Split = SpecInstr.split(":")
 				OKSP = False
-				if SpecInstr=="|Black|":
+				if SpecInstr.lower()=="|black|":
 					ListCode += b'\xff\x20'
-				elif SpecInstr=="|Red|":
+				elif SpecInstr.lower()=="|red|":
 					ListCode += b'\xff\x23'
-				elif SpecInstr=="|Blue:":
+				elif SpecInstr.lower()=="|blue|":
 					ListCode += b'\xff\x26'
-				elif Split[0]=="|Next":
+				elif SpecInstr.upper()=="|NL|":
+                                        ListCode += b'\xff\x00'
+				elif Split[0].lower()=="|next":
 					ListCode += b'\xff\x01'
 					OKSP = True
-				elif Split[0]=="|Start":
+				elif Split[0].lower()=="|start":
 					ListCode += b'\xff\x0b'
 					OKSP = True
-				elif Split[0]=="|Pause":
+				elif Split[0].lower()=="|pause":
 					ListCode += b'\xff\x0c'
 					OKSP = True
-				elif Split[0]=="|End":
+				elif Split[0].lower()=="|end":
 					ListCode += b'\xff\x11'
 					OKSP = True
 				else:
-					if SpecInstr[1]=="c":
+					if SpecInstr[1].lower()=="c":
 						try:
 						       ListCode += bytes([254, int(SpecInstr[2:-1])])
 						except:pass
-					elif SpecInstr[1]=="n":
+					elif SpecInstr[1].lower()=="n":
 						try:
 						       ListCode += bytes([int(SpecInstr[2:-1])])
 						except:pass
@@ -109,12 +108,12 @@ def GetCode(StrConv):
                                                 ListCode += bytes([0])
 				SpecInstr = ""
 			elif SpecInstr=="":
-				ListCode += bytes([Str.index(Lettre)])
+				ListCode += bytes([LISTCHAR.index(Lettre)])
 			else:
 				SpecInstr+=Lettre
 		except:
 			try:
-				b = bytes(StrSpec.index(Lettre))
+				b = bytes(LISTCHARSPEC.index(Lettre))
 				ListCode+=b'\xfe'+b
 				del b
 			except:

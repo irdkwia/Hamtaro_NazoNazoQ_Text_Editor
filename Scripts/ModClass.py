@@ -43,6 +43,10 @@ def GetSel(ListCode):
 					Sel+="|Red|"
 				elif Nb==38:
 					Sel+="|Blue|"
+				elif Nb==51:
+					Sel+="|Large|"
+				elif Nb==53:
+					Sel+="|Center|"
 				else:
 					Sel+="|x"+str(Nb)+"|"
 			else:
@@ -76,6 +80,10 @@ def GetCode(LISTCHARConv):
 					ListCode += b'\xff\x26'
 				elif SpecInstr.upper()=="|NL|":
                                         ListCode += b'\xff\x00'
+				elif SpecInstr.lower()=="|large|":
+                                        ListCode += b'\xff\x33'
+				elif SpecInstr.lower()=="|center|":
+                                        ListCode += b'\xff\x35'
 				elif Split[0].lower()=="|next":
 					ListCode += b'\xff\x01'
 					OKSP = True

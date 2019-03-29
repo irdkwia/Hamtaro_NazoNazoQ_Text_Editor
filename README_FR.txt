@@ -65,6 +65,10 @@ Voici la liste de ces caractères :
 |Blue|, |Red| or |Black| : Sont utilisés pour changer la
 couleur du texte qui suit.
 
+|Large|: Change la taille du texte qui suit.
+
+|Center|: Centre le texte (ne marche pas toujours).
+
 |Start:XX| : Indique un début de boîte de dialogue. Attention, 
 il peut être omis.
 XX représente un nombre entre 0 et 255.

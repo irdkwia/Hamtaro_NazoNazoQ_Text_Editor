@@ -60,16 +60,20 @@ Here is a list of special characters:
 |Blue|, |Red| or |Black|: They are used to change the
 color of the following text.
 
+|Large|: Change the size of the following text.
+
+|Center|: Center-align the text (doesn't always work).
+
 |Start:XX|: Notify about a start of a textbox, but it is not
 always present. XX Represents a number between 0 and 255.
 
 |End:XX|: Notify about an end of a textbox, but it is not
 always present. XX Represents a number between 0 and 255.
 
-|Pause:XX|: Used to mark a pause in a dialogue, before
+|Pause:XX|: Used to mark a pause in a dialog, before
 it continues automatically.
 XX Represents a number between 0 and 255. It defines the
-amount of time (in frames) the dialogue will pause before
+amount of time (in frames) the dialog will pause before
 it continues.
 
 |Next:XX|: Notify about a new textbox.
